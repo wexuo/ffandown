@@ -7,7 +7,7 @@ const download = require('download')
 
 const getLatestVersion = async (repo = 'ffandown-front') => {
     // eslint-disable-next-line max-len
-    const response = await fetch(`https://ipera.oimi.space/https://api.github.com/repos/helson-lin/${repo}/releases/latest`)
+    const response = await fetch(`https://ghproxy.cn/https://api.github.com/repos/helson-lin/${repo}/releases/latest`)
     const data = await response.json()
     const { tag_name, assets, body } = data
     return {
@@ -93,7 +93,7 @@ const autoUpdateFrontEnd = async () => {
     if (!browser_download_url) throw new Error('no latest release url found')
     fse.ensureDirSync(path.join(process.cwd(), 'public'))
     fse.emptyDirSync(path.join(process.cwd(), 'public'))
-    await download('https://nn.oimi.space/' + browser_download_url, path.join(process.cwd(), 'public'), {
+    await download('https://ghproxy.cn/' + browser_download_url, path.join(process.cwd(), 'public'), {
         filename: 'ffandown.zip',
         extract: true,
     })
